@@ -1,0 +1,254 @@
+/* GOOGLE FONT */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f6fa;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevents tiny horizontal jitters */
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS VARIABLES */
+:root {
+    --primary-color: #8ec3eb;
+    --primary-hover: #333333;
+    --dark-navy: #0f172a;
+    --darkest: #020617;
+    --whatsapp-green: #25d366;
+    --whatsapp-hover: #128c7e;
+    --white: #fff;
+    --light-gray: #f1f5f9;
+    --text-dark: #0f172a;
+    --text-muted: #666;
+}
+
+/* NAVBAR */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--dark-navy);
+    z-index: 1000;
+    transition: all 0.4s ease; /* Smooth transition for shadow */
+}
+
+nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+nav h1 {
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* HERO */
+.hero {
+    margin-top: 60px;
+    height: 85vh;
+    background: url("Images/karachi-street.png") center/cover no-repeat;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.hero-content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-content h2 {
+    font-size: clamp(32px, 5vw, 50px); /* Responsive font size */
+    margin-bottom: 15px;
+}
+
+/* BUTTONS */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 600;
+    transition: 0.3s transform ease, 0.3s background ease;
+    display: inline-block;
+}
+
+.btn:active {
+    transform: scale(0.95); /* Logical feedback for "smooth" feel */
+}
+
+.call-btn { background: var(--dark-navy); }
+.call-btn:hover { background: var(--primary-hover); }
+
+.whatsapp-btn { background: var(--whatsapp-green); }
+.whatsapp-btn:hover { background: var(--whatsapp-hover); }
+
+/* CARS SECTION */
+.cars-section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 20px;
+}
+
+.cars-section h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: var(--text-dark);
+}
+
+.category {
+    margin-bottom: 60px;
+}
+
+.category h3 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+    color: var(--dark-navy);
+    opacity: 0;
+    transition: 0.6s all ease;
+}
+
+.category h3.show {
+    opacity: 1;
+}
+
+/* CAROUSEL LOGIC */
+.car-carousel {
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.car-track {
+    display: flex;
+    gap: 25px;
+    width: max-content; /* Critical for JS cloning logic */
+    animation: scroll 40s linear infinite;
+}
+
+/* The Smooth Fix: Pause on hover so users can read */
+.car-carousel:hover .car-track {
+    animation-play-state: paused;
+}
+
+.car-card {
+    width: 300px;
+    flex-shrink: 0;
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.car-card h4 { padding: 15px 15px 5px; color: var(--text-dark); }
+.car-card p { padding: 0 15px 15px; color: var(--text-muted); font-size: 14px; }
+
+.packages {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background: var(--light-gray);
+    gap: 5px;
+}
+
+.packages span {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--dark-navy);
+}
+
+/* SCROLL ANIMATION */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* JS will clone items to make this work */
+}
+
+/* CONTACT & FOOTER */
+.contact-section {
+    background: var(--dark-navy);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 20px;
+}
+
+footer {
+    background: var(--darkest);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    nav { flex-direction: column; gap: 15px; }
+    .car-track { animation-duration: 20s; } /* Faster on small screens */
+}
